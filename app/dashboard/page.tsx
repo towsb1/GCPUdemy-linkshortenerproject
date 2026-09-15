@@ -10,6 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { CreateLinkDialog } from "@/components/dashboard/create-link-dialog";
+import { LinkActions } from "@/components/dashboard/link-actions";
 import { getLinksForUser } from "@/data/links";
 
 export default async function DashboardPage() {
@@ -23,15 +25,18 @@ export default async function DashboardPage() {
 
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 px-6 py-10">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
-          Your links
-        </h1>
-        <p className="text-sm text-muted-foreground">
-          {userLinks.length === 0
-            ? "You haven't created any short links yet."
-            : `You have ${userLinks.length} short link${userLinks.length === 1 ? "" : "s"}.`}
-        </p>
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-1">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+            Your links
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            {userLinks.length === 0
+              ? "You haven't created any short links yet."
+              : `You have ${userLinks.length} short link${userLinks.length === 1 ? "" : "s"}.`}
+          </p>
+        </div>
+        <CreateLinkDialog />
       </div>
 
       {userLinks.length === 0 ? (
@@ -58,7 +63,9 @@ export default async function DashboardPage() {
                   {link.url}
                 </CardDescription>
               </CardHeader>
-              <CardContent />
+              <CardContent>
+                <LinkActions link={link} />
+              </CardContent>
             </Card>
           ))}
         </div>
