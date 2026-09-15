@@ -14,15 +14,15 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## 📖 Project Documentation
 
-**Comprehensive coding standards and patterns are available in the `/docs` directory.**
+**Comprehensive coding standards and patterns are available in the `/.github/instructions/` directory.**
 ALWAYS refer to the relevant .md file BEOFRE generating any code.
 
 ### Quick Links
 
 | Document | Purpose |
 |----------|---------|
-| [AUTH_CLERK_POLICY.md](./docs/AUTH_CLERK_POLICY.md) | Required Clerk-only auth and route protection behavior |
-| [SHADCN_UI_POLICY.md](./docs/SHADCN_UI_POLICY.md) | Required UI rule: use shadcn/ui components only; do not introduce custom UI components |
+| [AUTH_CLERK_POLICY.md](../.github/instructions/AUTH_CLERK_POLICY.instructions.md) | Required Clerk-only auth and route protection behavior |
+| [SHADCN_UI_POLICY.md](../.github/instructions/SHADCN_UI_POLICY.md) | Required UI rule: use shadcn/ui components only; do not introduce custom UI components |
 
 ---
 
@@ -69,7 +69,7 @@ export default async function FeaturePage() {
   return <div>{/* Render */}</div>;
 }
 ```
-👉 **Details**: [AGENT_INSTRUCTIONS.md](./docs/AGENT_INSTRUCTIONS.md#react--nextjs-conventions)
+👉 **Details**: [AGENT_INSTRUCTIONS.md](../.github/instructions/AGENT_INSTRUCTIONS.instructions.md#react--nextjs-conventions)
 
 ### Creating a New Component
 ```typescript
@@ -80,7 +80,7 @@ export function Component() {
   return <div>{/* Component code */}</div>;
 }
 ```
-👉 **Details**: [COMPONENT_PATTERNS.md](./docs/COMPONENT_PATTERNS.md)
+👉 **Details**: [COMPONENT_PATTERNS.md](../.github/instructions/COMPONENT_PATTERNS.instructions.md)
 
 ### Creating an API Route
 ```typescript
@@ -94,7 +94,7 @@ export async function GET(request: NextRequest) {
   // Handle request
 }
 ```
-👉 **Details**: [API_AUTHENTICATION.md](./docs/API_AUTHENTICATION.md)
+👉 **Details**: [API_AUTHENTICATION.md](../.github/instructions/API_AUTHENTICATION.instructions.md)
 
 ### Database Query
 ```typescript
@@ -104,13 +104,13 @@ import { eq } from "drizzle-orm";
 
 const link = await db.select().from(links).where(eq(links.id, id));
 ```
-👉 **Details**: [DATABASE_PATTERNS.md](./docs/DATABASE_PATTERNS.md)
+👉 **Details**: [DATABASE_PATTERNS.md](../.github/instructions/DATABASE_PATTERNS.instructions.md)
 
 ---
 
 ## 🎯 Before You Code
 
-1. **🛑 MANDATORY: Read the relevant documentation** in `/docs` for your task BEFORE writing any code — this is not optional
+1. **🛑 MANDATORY: Read the relevant documentation** in `/.github/instructions/` for your task BEFORE writing any code — this is not optional
 2. **Check existing patterns** in the codebase
 3. **Follow TypeScript strict mode** - no `any` types
 4. **Authenticate protected routes** - use Clerk's `auth()`
@@ -125,7 +125,7 @@ const link = await db.select().from(links).where(eq(links.id, id));
 
 For comprehensive guides, code examples, and best practices:
 
-**➡️ Start with [docs/README.md](./docs/README.md)**
+**➡️ Start with [README.md](../.github/instructions/README.instructions.md)**
 
 ---
 
