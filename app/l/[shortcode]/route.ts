@@ -14,5 +14,21 @@ export async function GET(
     return NextResponse.json({ error: "Link not found" }, { status: 404 });
   }
 
-  return NextResponse.redirect(new URL(link.url), { status: 307 });
+  try {
+    const destinationUrl = new URL(link.url);
+
+    if (
+      destinationUrl.protocol !== "http:" &&
+      destinationUrl.protocol !== "https:"
+    ) {
+      return NextResponse.json(
+        { error: "Invalid link destination" },
+        { status: 400 }
+      );
+    }
+
+    return NextResponse.redirect(destinationUrl, { status: 307 });
+  } catch {
+    return NextResponse.json({ error: "Invalid link destination" }, { status: 400 });
+  }
 }

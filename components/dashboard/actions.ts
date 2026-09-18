@@ -22,8 +22,25 @@ const slugSchema = z
     "Custom slug can only contain letters, numbers, hyphens, and underscores."
   );
 
+const isHttpUrl = (value: string): boolean => {
+  try {
+    const url = new URL(value);
+
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+};
+
+const destinationUrlSchema = z
+  .string()
+  .trim()
+  .min(1, "Enter a URL.")
+  .url("Enter a valid URL.")
+  .refine(isHttpUrl, "URL must use http or https.");
+
 const createLinkSchema = z.object({
-  url: z.string().trim().min(1, "Enter a URL.").url("Enter a valid URL."),
+  url: destinationUrlSchema,
   slug: slugSchema.optional().or(z.literal("")),
 });
 
@@ -35,7 +52,7 @@ export type CreateLinkResult =
 
 const updateLinkSchema = z.object({
   id: z.number().int().positive(),
-  url: z.string().trim().min(1, "Enter a URL.").url("Enter a valid URL."),
+  url: destinationUrlSchema,
   slug: slugSchema,
 });
 
